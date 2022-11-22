@@ -15,13 +15,14 @@ main {
                 align-items: center;
                 justify-content: space-between;
                 padding: 1rem;
-                background-color: $color-white;
+                background-color: rgba($color-white, 1);
 
                 span {
                     position: absolute;
 
                     i {
                         font-size: 1.25rem;
+                        text-shadow: 1px 1px 2px rgba($color-black, 0.5);
                     }
                 }
 
@@ -35,7 +36,8 @@ main {
                     flex-direction: column;
                     padding-top: 2rem;
                     color: $color-white;
-                    background-color: $color-red;
+                    background-color: rgba($color-red, 1);
+                    border: 1px solid rgba($color-red, 1);
                     border-bottom-left-radius: 2rem;
                     border-bottom-right-radius: 2rem;
                     transform: translateX(-50%);
@@ -43,7 +45,7 @@ main {
                     span {
                         top: 0.25rem;
                         left: 50%;
-                        color: rgba($color-white, 0.5);
+                        color: rgba($color-white, 0.75);
                         transform: translateX(-50%);
 
                         i {
@@ -61,6 +63,7 @@ main {
                     left: 0;
                     padding-left: 2rem;
                     color: $color-black;
+                    border: 1px solid rgba($color-black, 0.5);
                     border-top-right-radius: 2rem;
                     border-bottom-right-radius: 2rem;
                     transform: translateY(-50%);
@@ -68,7 +71,7 @@ main {
                     span {
                         top: 50%;
                         left: 0.25rem;
-                        color: rgba($color-black, 0.5);
+                        color: rgba($color-black, 0.75);
                         transform: translateY(-50%);
                     }
                 }
@@ -78,7 +81,8 @@ main {
                     right: 0;
                     padding-right: 2rem;
                     color: $color-white;
-                    background-color: $color-blue;
+                    background-color: rgba($color-blue, 1);
+                    border: 1px solid rgba($color-blue, 1);
                     border-top-left-radius: 2rem;
                     border-bottom-left-radius: 2rem;
                     transform: translateY(-50%);
@@ -86,13 +90,14 @@ main {
                     span {
                         top: 50%;
                         right: 0.25rem;
-                        color: rgba($color-white, 0.5);
+                        color: rgba($color-white, 0.75);
                         transform: translateY(-50%);
                     }
                 }
             }
 
             figure {
+                position: relative;
                 padding: 2px;
                 border-radius: inherit;
 

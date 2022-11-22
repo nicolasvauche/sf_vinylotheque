@@ -85,11 +85,43 @@ window.addEventListener('DOMContentLoaded', () => {
     btn.addEventListener('click', event => {
       event.preventDefault()
       if (event.target.parentNode.parentNode.classList.contains('top') || event.target.parentNode.classList.contains('top') || event.target.classList.contains('top')) {
-        window.location.href = '/animals'
+        suggestionElt.animate(
+          [
+            { 'transform': 'translateY(-10%)' }
+          ],
+          {
+            duration: 250,
+            iterations: 1
+          })
+        Promise.all(suggestionElt.getAnimations().map((animation) => animation.finished)).then(
+          () => window.location.href = '/animals'
+        )
       } else if (event.target.parentNode.parentNode.classList.contains('left') || event.target.parentNode.classList.contains('left') || event.target.classList.contains('left')) {
-        window.location.href = ''
+        suggestionElt.animate(
+          [
+            { 'transform-origin': 'bottom left' },
+            { 'transform': 'rotate(-5deg) translateX(-10%)' }
+          ],
+          {
+            duration: 250,
+            iterations: 1
+          })
+        Promise.all(suggestionElt.getAnimations().map((animation) => animation.finished)).then(
+          () => window.location.href = '/'
+        )
       } else if (event.target.parentNode.parentNode.classList.contains('right') || event.target.parentNode.classList.contains('right') || event.target.classList.contains('right')) {
-        window.alert('Modification')
+        suggestionElt.animate(
+          [
+            { 'transform-origin': 'top right' },
+            { 'transform': 'rotate(5deg) translateX(10%)' }
+          ],
+          {
+            duration: 250,
+            iterations: 1
+          })
+        Promise.all(suggestionElt.getAnimations().map((animation) => animation.finished)).then(
+          () => window.alert('Modification')
+        )
       }
     })
   })

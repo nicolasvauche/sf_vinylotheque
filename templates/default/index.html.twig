@@ -11,25 +11,6 @@
 {% block body %}
     <main>
         <section class="suggestion" id="touch-area">
-            <a href="#" class="action top">
-                <span>
-                    <i class="fa-solid fa-angles-up"></i>
-                </span>
-                <i class="fa-solid fa-circle-play"></i>
-            </a>
-            <a href="#" class="action left">
-                <span>
-                    <i class="fa-solid fa-angles-left"></i>
-                </span>
-                <i class="fa-solid fa-x"></i>
-            </a>
-            <a href="#" class="action right">
-                <span>
-                    <i class="fa-solid fa-angles-right"></i>
-                </span>
-                <i class="fa-solid fa-pen-to-square"></i>
-            </a>
-
             {% if album %}
                 <div class="app-alert success">
                     <p>On écoute {{ album | capitalize }} !</p>
@@ -37,6 +18,24 @@
             {% endif %}
 
             <figure class="app-image">
+                <a href="#" class="action top">
+                <span>
+                    <i class="fa-solid fa-arrow-up-long"></i>
+                </span>
+                    <i class="fa-solid fa-circle-play"></i>
+                </a>
+                <a href="#" class="action left">
+                <span>
+                    <i class="fa-solid fa-arrow-left-long"></i>
+                </span>
+                    <i class="fa-solid fa-x"></i>
+                </a>
+                <a href="#" class="action right">
+                <span>
+                    <i class="fa-solid fa-arrow-right-long"></i>
+                </span>
+                    <i class="fa-solid fa-pen-to-square"></i>
+                </a>
                 <img src="{{ asset('build/img/album_animals.jpg') }}" alt="Pink Floyd - Animals" />
             </figure>
 
