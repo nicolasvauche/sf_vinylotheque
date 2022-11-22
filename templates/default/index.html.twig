@@ -2,11 +2,15 @@
 
 {% block title %}Bienvenue{% endblock %}
 
+{% block javascripts %}
+    <script src="{{ asset('build/js/home.js') }}" defer></script>
+{% endblock %}
+
 {% block body_class %}suggestion{% endblock %}
 
 {% block body %}
     <main>
-        <section class="suggestion">
+        <section class="suggestion" id="touch-area">
             <a href="#" class="action top">
                 <i class="fa-solid fa-heart"></i>
             </a>
