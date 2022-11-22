@@ -1,22 +1,5 @@
-$font-primary: Arial, Helvetica, sans-serif;
-$color-white: #ffffff;
-$color-black: #1a1a1a;
-$color-red: #ff0000;
+@import "abstracts/variables";
 
-html {
-    body {
-        font-family: $font-primary;
-        text-align: center;
-        color: $color-black;
-        background-color: $color-white;
+@import "base/reset", "base/typography";
 
-        main {
-            h1 {
-                padding-bottom: 0.5rem;
-                font-size: 1.5rem;
-                text-transform: uppercase;
-                border-bottom: 3px solid $color-black;
-            }
-        }
-    }
-}
+@import "layout/default", "layout/main", "layout/navigation";

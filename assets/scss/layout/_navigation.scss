@@ -1,0 +1,33 @@
+.app-navigation {
+    position: fixed;
+    bottom: 0.5rem;
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+    a {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 0.75rem 1.5rem;
+        font-size: 0.75rem;
+        font-weight: bold;
+        color: $color-primary;
+        border-radius: 1.5rem;
+        transition: all 0.3s;
+
+        i {
+            margin-bottom: 0.25rem;
+            font-size: 1.5rem;
+        }
+
+        &.active {
+            color: $color-white !important;
+            background-color: rgba($color-primary, 0.75);
+            box-shadow: inset 2px 2px 2px rgba($color-black, 0.5);
+        }
+    }
+}

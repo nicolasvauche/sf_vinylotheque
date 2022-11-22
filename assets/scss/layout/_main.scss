@@ -1,0 +1,72 @@
+main {
+    section {
+        &.suggestion {
+            position: relative;
+            margin: 0.75rem;
+            color: $color-white;
+            background-color: $color-black;
+            border-radius: 1.5rem;
+            box-shadow: 0.25rem 0.25rem 0.5rem rgba($color-black, 0.75);
+
+            .action {
+                position: absolute;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 1rem;
+                background-color: $color-white;
+
+                i {
+                    font-size: 1.5rem;
+                }
+
+                &.top {
+                    top: 0;
+                    left: 50%;
+                    flex-direction: column;
+                    color: $color-white;
+                    background-color: $color-red;
+                    transform: translateX(-50%);
+                    border-bottom-left-radius: 2rem;
+                    border-bottom-right-radius: 2rem;
+                }
+
+                &.left {
+                    top: 50%;
+                    left: 0;
+                    transform: translateY(-50%);
+                    color: $color-white;
+                    background-color: $color-blue;
+                    border-top-right-radius: 2rem;
+                    border-bottom-right-radius: 2rem;
+                }
+
+                &.right {
+                    top: 50%;
+                    right: 0;
+                    transform: translateY(-50%);
+                    color: $color-black;
+                    border-top-left-radius: 2rem;
+                    border-bottom-left-radius: 2rem;
+                }
+            }
+
+            figure {
+                padding: 2px;
+                border-radius: inherit;
+
+                img {
+                    display: block;
+                    width: 100%;
+                    height: calc(100vh - 12.25rem);
+                    object-fit: cover;
+                    border-radius: inherit;
+                }
+            }
+
+            .infos {
+                padding: 1.5rem 1rem;
+            }
+        }
+    }
+}

@@ -2,8 +2,29 @@
 
 {% block title %}Bienvenue{% endblock %}
 
+{% block body_class %}suggestion{% endblock %}
+
 {% block body %}
     <main>
-        <h1>Accueil</h1>
+        <section class="suggestion">
+            <a href="#" class="action top">
+                <i class="fa-solid fa-heart"></i>
+            </a>
+            <a href="#" class="action left">
+                <i class="fa-solid fa-pen-to-square"></i>
+            </a>
+            <a href="#" class="action right">
+                <i class="fa-solid fa-x"></i>
+            </a>
+
+            <figure class="app-image">
+                <img src="{{ asset('build/img/album_animals.jpg') }}" alt="Pink Floyd - Animals" />
+            </figure>
+
+            <div class="infos">
+                <h1>Animals</h1>
+                <h2>Pink Floyd</h2>
+            </div>
+        </section>
     </main>
 {% endblock %}
