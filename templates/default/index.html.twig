@@ -30,9 +30,11 @@
                 <i class="fa-solid fa-pen-to-square"></i>
             </a>
 
-            <div class="app-alert success">
-                <p>On écoute Animals !</p>
-            </div>
+            {% if album %}
+                <div class="app-alert success">
+                    <p>On écoute {{ album | capitalize }} !</p>
+                </div>
+            {% endif %}
 
             <figure class="app-image">
                 <img src="{{ asset('build/img/album_animals.jpg') }}" alt="Pink Floyd - Animals" />

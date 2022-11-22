@@ -38,7 +38,7 @@ window.addEventListener('DOMContentLoaded', () => {
             iterations: 1
           })
         Promise.all(suggestionElt.getAnimations().map((animation) => animation.finished)).then(
-          () => window.location.reload()
+          () => window.location.href = '/'
         )
       } else {
         suggestionElt.animate(
@@ -65,11 +65,7 @@ window.addEventListener('DOMContentLoaded', () => {
             iterations: 1
           })
         Promise.all(suggestionElt.getAnimations().map((animation) => animation.finished)).then(
-          () => {
-            if (window.confirm('On écoute Animals ?')) {
-              window.location.reload()
-            }
-          }
+          () => window.location.href = '/animals'
         )
       } else {
         console.log('swiping down does nothing')
@@ -89,15 +85,11 @@ window.addEventListener('DOMContentLoaded', () => {
     btn.addEventListener('click', event => {
       event.preventDefault()
       if (event.target.parentNode.parentNode.classList.contains('top') || event.target.parentNode.classList.contains('top') || event.target.classList.contains('top')) {
-        if (window.confirm('On écoute Animals ?')) {
-          window.alert('Écoute + Autre proposition')
-          window.location.reload()
-        }
+        window.location.href = '/animals'
       } else if (event.target.parentNode.parentNode.classList.contains('left') || event.target.parentNode.classList.contains('left') || event.target.classList.contains('left')) {
-        window.alert('Modification')
+        window.location.href = ''
       } else if (event.target.parentNode.parentNode.classList.contains('right') || event.target.parentNode.classList.contains('right') || event.target.classList.contains('right')) {
-        window.alert('Autre proposition')
-        window.location.reload()
+        window.alert('Modification')
       }
     })
   })

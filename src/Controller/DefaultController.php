@@ -8,9 +8,11 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DefaultController extends AbstractController
 {
-    #[Route('/', name: 'app_home')]
-    public function index(): Response
+    #[Route('/{album}', name: 'app_home')]
+    public function index($album = null): Response
     {
-        return $this->render('default/index.html.twig');
+        return $this->render('default/index.html.twig', [
+            'album' => $album ?? null,
+        ]);
     }
 }
