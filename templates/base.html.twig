@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        {% block meta %}{% endblock %}
 
         <title>{% block title %}{% endblock %} - Vinylothèque</title>
 
@@ -33,7 +34,7 @@
                 <i class="fa-solid fa-circle-plus"></i>
                 New
             </a>
-            <a href="{{ path('app_home') }}">
+            <a href="{{ path('app_user_profile') }}" {% if app.request.get('_route') == 'app_user_profile' %}class="active"{% endif %}>
                 <i class="fa-solid fa-circle-user"></i>
                 Profil
             </a>
@@ -49,6 +50,8 @@
             </a>
         </div>
 
-        {% block body %}{% endblock %}
+        <main>
+            {% block body %}{% endblock %}
+        </main>
     </body>
 </html>

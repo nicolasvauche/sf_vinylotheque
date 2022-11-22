@@ -1,0 +1,18 @@
+.app-btn {
+    box-sizing: border-box;
+    padding: 0.25rem 1rem;
+    width: 100%;
+    font-family: $font-primary;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    background-color: $color-white;
+    border: 1px solid $color-black;
+    border-radius: 0.5rem;
+
+    &[disabled] {
+        opacity: 0.25;
+        cursor: not-allowed;
+    }
+}

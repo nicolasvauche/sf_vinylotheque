@@ -1,0 +1,53 @@
+.app-form {
+    margin: 1rem;
+    padding: 1rem;
+    color: $color-black;
+    background-color: rgba($color-white, 0.75);
+    border-radius: 1rem;
+
+    .form-group {
+        margin-bottom: 1rem;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.25rem;
+            font-weight: bold;
+            text-transform: uppercase;
+
+            &.required {
+                &:after {
+                    content: " *";
+                    color: $color-red;
+                    vertical-align: super;
+                }
+            }
+        }
+
+        .form-control {
+            box-sizing: border-box;
+            padding: 0.5rem 1rem;
+            width: 100%;
+            font-family: $font-primary;
+            font-size: 1rem;
+            text-align: center;
+            background-color: $color-white;
+            border: 1px solid $color-black;
+            border-radius: 0.5rem;
+
+            &.error {
+                color: $color-white;
+                background-color: $color-red;
+            }
+        }
+
+        button[type="submit"] {
+            font-size: 1.25rem;
+            color: $color-white;
+            background-color: $color-green;
+        }
+    }
+}

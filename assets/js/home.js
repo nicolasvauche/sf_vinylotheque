@@ -51,7 +51,10 @@ window.addEventListener('DOMContentLoaded', () => {
             iterations: 1
           })
         Promise.all(suggestionElt.getAnimations().map((animation) => animation.finished)).then(
-          () => window.alert('Modification')
+          () => {
+            window.alert('Modification')
+            window.location.href = '/'
+          }
         )
       }
     } else {
@@ -65,7 +68,7 @@ window.addEventListener('DOMContentLoaded', () => {
             iterations: 1
           })
         Promise.all(suggestionElt.getAnimations().map((animation) => animation.finished)).then(
-          () => window.location.href = '/animals'
+          () => window.location.href = '/ecouter/' + suggestionElt.dataset.albumid
         )
       } else {
         console.log('swiping down does nothing')
@@ -80,7 +83,7 @@ window.addEventListener('DOMContentLoaded', () => {
   /* < SWIPE */
 
   /* CLICK > */
-  const suggestBtns = document.querySelectorAll('.suggestion > .action')
+  const suggestBtns = document.querySelectorAll('.suggestion .action')
   suggestBtns.forEach(btn => {
     btn.addEventListener('click', event => {
       event.preventDefault()
@@ -94,7 +97,7 @@ window.addEventListener('DOMContentLoaded', () => {
             iterations: 1
           })
         Promise.all(suggestionElt.getAnimations().map((animation) => animation.finished)).then(
-          () => window.location.href = '/animals'
+          () => window.location.href = '/ecouter/' + suggestionElt.dataset.albumid
         )
       } else if (event.target.parentNode.parentNode.classList.contains('left') || event.target.parentNode.classList.contains('left') || event.target.classList.contains('left')) {
         suggestionElt.animate(
@@ -120,7 +123,10 @@ window.addEventListener('DOMContentLoaded', () => {
             iterations: 1
           })
         Promise.all(suggestionElt.getAnimations().map((animation) => animation.finished)).then(
-          () => window.alert('Modification')
+          () => {
+            window.alert('Modification')
+            window.location.href = '/'
+          }
         )
       }
     })

@@ -1,6 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}On écoute Pink Floyd ?{% endblock %}
+{% block title %}On écoute {{ album.artist }} ?{% endblock %}
+
+{% block meta %}
+    {% if id is defined %}
+        <meta http-equiv="refresh" content="3;URL=/">
+    {% endif %}
+{% endblock %}
 
 {% block javascripts %}
     <script src="{{ asset('build/js/home.js') }}" defer></script>
@@ -9,47 +15,47 @@
 {% block body_class %}home{% endblock %}
 
 {% block body %}
-    <main>
-        <section class="suggestion" id="touch-area">
-            {% if album %}
-                <div class="app-alert success">
-                    <p>On écoute {{ album | capitalize }} !</p>
+    <section class="suggestion" id="touch-area" data-albumid="{{ album.id }}">
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="app-alert {{ label }}">
+                    <p>{{ message }}</p>
                 </div>
-            {% endif %}
+            {% endfor %}
+        {% endfor %}
 
-            <figure class="app-image">
-                <a href="#" class="action top">
+        <figure class="app-image">
+            <a href="#" class="action top">
                 <span>
                     <i class="fa-solid fa-arrow-up-long"></i>
                 </span>
-                    <i class="fa-solid fa-circle-play"></i>
-                </a>
-                <a href="#" class="action left">
+                <i class="fa-solid fa-circle-play"></i>
+            </a>
+            <a href="#" class="action left">
                 <span>
                     <i class="fa-solid fa-arrow-left-long"></i>
                 </span>
-                    <i class="fa-solid fa-x"></i>
-                </a>
-                <a href="#" class="action right">
+                <i class="fa-solid fa-x"></i>
+            </a>
+            <a href="#" class="action right">
                 <span>
                     <i class="fa-solid fa-arrow-right-long"></i>
                 </span>
-                    <i class="fa-solid fa-pen-to-square"></i>
-                </a>
-                <img src="{{ asset('build/img/album_animals.jpg') }}" alt="Pink Floyd - Animals" />
-            </figure>
+                <i class="fa-solid fa-pen-to-square"></i>
+            </a>
+            <img src="{{ asset('build/img/' ~ album.cover) }}" alt="{{ album.artist ~ ' - ' ~ album.title }}" />
+        </figure>
 
-            <div class="infos">
-                <div class="content">
-                    <h1>Animals</h1>
-                    <h2>Pink Floyd</h2>
-                </div>
-                <div class="actions">
-                    <a href="#">
-                        <i class="fa-regular fa-heart"></i>
-                    </a>
-                </div>
+        <div class="infos">
+            <div class="content">
+                <h1>{{ album.title }}</h1>
+                <h2>{{ album.artist }}</h2>
             </div>
-        </section>
-    </main>
+            <div class="actions">
+                <a href="#">
+                    <i class="fa-regular fa-heart"></i>
+                </a>
+            </div>
+        </div>
+    </section>
 {% endblock %}

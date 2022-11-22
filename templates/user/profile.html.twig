@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon profil{% endblock %}
+
+{% block body %}
+    <section class="profile">
+        <h1>Mon profil</h1>
+
+        <form class="app-form">
+            <div class="form-group">
+                <label for="userPseudo">Pseudo</label>
+                <input type="text" name="pseudo" id="userPseudo" class="form-control error" value="ni" />
+            </div>
+            <div class="form-group">
+                <label for="userEmail" class="required">Email</label>
+                <input type="email" name="email" id="userEmail" class="form-control" value="nicolas@user.com" required aria-required="true" />
+            </div>
+            <div class="form-group">
+                <label for="userPassword">Nouveau mot de passe</label>
+                <input type="password" name="password" id="userPassword" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="userPasswordConfirm">Confirmation</label>
+                <input type="password" name="passwordconfirm" id="userPasswordConfirm" class="form-control" />
+            </div>
+            <div class="form-group">
+                <button type="submit" class="app-btn" disabled aria-disabled="true">Enregistrer &raquo;</button>
+            </div>
+        </form>
+
+        <div class="actions">
+            <a href="#" class="text-danger" onclick="return window.confirm('Confirmez la déconnexion')">
+                <i class="fa-solid fa-right-from-bracket"></i>
+            </a>
+        </div>
+
+    </section>
+{% endblock %}
