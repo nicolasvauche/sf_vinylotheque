@@ -1,5 +1,6 @@
 window.addEventListener('DOMContentLoaded', () => {
   /* SWIPE > */
+  const suggestionElt = document.querySelector('.suggestion')
   let xDown = null
   let yDown = null
 
@@ -27,17 +28,49 @@ window.addEventListener('DOMContentLoaded', () => {
 
     if (Math.abs(xDiff) > Math.abs(yDiff)) {
       if (xDiff > 0) {
-        window.alert('Autre proposition')
-        window.location.reload()
+        suggestionElt.animate(
+          [
+            { 'transform-origin': 'bottom left' },
+            { 'transform': 'rotate(-5deg) translateX(-10%)' }
+          ],
+          {
+            duration: 250,
+            iterations: 1
+          })
+        Promise.all(suggestionElt.getAnimations().map((animation) => animation.finished)).then(
+          () => window.location.reload()
+        )
       } else {
-        window.alert('Modification')
+        suggestionElt.animate(
+          [
+            { 'transform-origin': 'top right' },
+            { 'transform': 'rotate(5deg) translateX(10%)' }
+          ],
+          {
+            duration: 250,
+            iterations: 1
+          })
+        Promise.all(suggestionElt.getAnimations().map((animation) => animation.finished)).then(
+          () => window.alert('Modification')
+        )
       }
     } else {
       if (yDiff > 0) {
-        if (window.confirm('On écoute Animals ?')) {
-          window.alert('Écoute + Autre proposition')
-          window.location.reload()
-        }
+        suggestionElt.animate(
+          [
+            { 'transform': 'translateY(-10%)' }
+          ],
+          {
+            duration: 250,
+            iterations: 1
+          })
+        Promise.all(suggestionElt.getAnimations().map((animation) => animation.finished)).then(
+          () => {
+            if (window.confirm('On écoute Animals ?')) {
+              window.location.reload()
+            }
+          }
+        )
       } else {
         console.log('swiping down does nothing')
       }
