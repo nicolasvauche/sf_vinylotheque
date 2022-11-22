@@ -1,53 +1,72 @@
 window.addEventListener('DOMContentLoaded', () => {
-  document.addEventListener('touchstart', handleTouchStart, false)
-  document.addEventListener('touchmove', handleTouchMove, false)
+  /* SWIPE > */
+  let xDown = null
+  let yDown = null
 
-  var xDown = null
-  var yDown = null
-
-  function getTouches (evt) {
-    return evt.touches ||             // browser API
-      evt.originalEvent.touches // jQuery
+  const getTouches = (evt) => {
+    return evt.touches ||
+      evt.originalEvent.touches
   }
 
-  function handleTouchStart (evt) {
+  const handleTouchStart = (evt) => {
     const firstTouch = getTouches(evt)[0]
     xDown = firstTouch.clientX
     yDown = firstTouch.clientY
   }
 
-  function handleTouchMove (evt) {
+  const handleTouchMove = (evt) => {
     if (!xDown || !yDown) {
       return
     }
 
-    var xUp = evt.touches[0].clientX
-    var yUp = evt.touches[0].clientY
+    let xUp = evt.touches[0].clientX
+    let yUp = evt.touches[0].clientY
 
-    var xDiff = xDown - xUp
-    var yDiff = yDown - yUp
+    let xDiff = xDown - xUp
+    let yDiff = yDown - yUp
 
-    if (Math.abs(xDiff) > Math.abs(yDiff)) {/*most significant*/
+    if (Math.abs(xDiff) > Math.abs(yDiff)) {
       if (xDiff > 0) {
+        window.alert('Autre proposition')
         window.location.reload()
-        console.log('right')
       } else {
-        console.log('left')
         window.alert('Modification')
       }
     } else {
       if (yDiff > 0) {
-        console.log('up')
-        if (window.confirm('On écoute ça !')) {
+        if (window.confirm('On écoute Animals ?')) {
+          window.alert('Écoute + Autre proposition')
           window.location.reload()
         }
       } else {
         console.log('swiping down does nothing')
       }
     }
-    /* reset values */
+
     xDown = null
     yDown = null
   }
+  document.addEventListener('touchstart', handleTouchStart, false)
+  document.addEventListener('touchmove', handleTouchMove, false)
+  /* < SWIPE */
 
+  /* CLICK > */
+  const suggestBtns = document.querySelectorAll('.suggestion > .action')
+  suggestBtns.forEach(btn => {
+    btn.addEventListener('click', event => {
+      event.preventDefault()
+      if (event.target.parentNode.parentNode.classList.contains('top') || event.target.parentNode.classList.contains('top') || event.target.classList.contains('top')) {
+        if (window.confirm('On écoute Animals ?')) {
+          window.alert('Écoute + Autre proposition')
+          window.location.reload()
+        }
+      } else if (event.target.parentNode.parentNode.classList.contains('left') || event.target.parentNode.classList.contains('left') || event.target.classList.contains('left')) {
+        window.alert('Modification')
+      } else if (event.target.parentNode.parentNode.classList.contains('right') || event.target.parentNode.classList.contains('right') || event.target.classList.contains('right')) {
+        window.alert('Autre proposition')
+        window.location.reload()
+      }
+    })
+  })
+  /* < CLICK */
 })

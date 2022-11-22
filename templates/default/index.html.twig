@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Bienvenue{% endblock %}
+{% block title %}On écoute Pink Floyd ?{% endblock %}
 
 {% block javascripts %}
     <script src="{{ asset('build/js/home.js') }}" defer></script>
@@ -12,12 +12,21 @@
     <main>
         <section class="suggestion" id="touch-area">
             <a href="#" class="action top">
-                <i class="fa-solid fa-heart"></i>
+                <span>
+                    <i class="fa-solid fa-angles-up"></i>
+                </span>
+                <i class="fa-solid fa-circle-play"></i>
             </a>
             <a href="#" class="action left">
+                <span>
+                    <i class="fa-solid fa-angles-left"></i>
+                </span>
                 <i class="fa-solid fa-pen-to-square"></i>
             </a>
             <a href="#" class="action right">
+                <span>
+                    <i class="fa-solid fa-angles-right"></i>
+                </span>
                 <i class="fa-solid fa-x"></i>
             </a>
 
@@ -26,8 +35,15 @@
             </figure>
 
             <div class="infos">
-                <h1>Animals</h1>
-                <h2>Pink Floyd</h2>
+                <div class="content">
+                    <h1>Animals</h1>
+                    <h2>Pink Floyd</h2>
+                </div>
+                <div class="actions">
+                    <a href="#">
+                        <i class="fa-regular fa-heart"></i>
+                    </a>
+                </div>
             </div>
         </section>
     </main>

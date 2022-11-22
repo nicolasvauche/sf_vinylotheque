@@ -33,11 +33,21 @@
                 <i class="fa-solid fa-circle-plus"></i>
                 New
             </a>
-            <a href="{{ path('app_home') }}" class="text-danger" onclick="return window.confirm('Confirmez votre déconnexion')">
-                <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                Exit
+            <a href="{{ path('app_home') }}">
+                <i class="fa-solid fa-circle-user"></i>
+                Profil
             </a>
         </nav>
+
+        <div class="pushes">
+            <a href="#" class="app-push">
+                <i class="fa-regular fa-face-angry"></i>
+            </a>
+
+            <a href="#" class="app-push">
+                <i class="fa-solid fa-cloud"></i>
+            </a>
+        </div>
 
         {% block body %}{% endblock %}
     </body>
