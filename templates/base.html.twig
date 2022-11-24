@@ -30,7 +30,7 @@
                 <i class="fa-regular fa-circle-play"></i>
                 Play
             </a>
-            <a href="{{ path('app_home') }}" class="text-success">
+            <a href="{{ path('app_album_add') }}" class="text-success {% if app.request.get('_route') == 'app_album_add' %}active{% endif %}">
                 <i class="fa-solid fa-circle-plus"></i>
                 New
             </a>
