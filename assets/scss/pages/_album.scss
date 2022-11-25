@@ -1,0 +1,13 @@
+main {
+    section {
+        &.album {
+            margin: 0.5rem 0.75rem;
+            padding: 3rem 1rem;
+            height: 70.625vh;
+            color: $color-white;
+            background-color: $color-black;
+            border-radius: 1.5rem;
+            box-shadow: 0.25rem 0.25rem 0.5rem rgba($color-black, 0.75);
+        }
+    }
+}
