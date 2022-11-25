@@ -11,6 +11,14 @@ h2 {
     color: rgba($color-white, 0.5);
 }
 
+.text-primary {
+    color: $color-primary !important;
+}
+
+.text-info {
+    color: $color-blue !important;
+}
+
 .text-success {
     color: $color-green !important;
 }

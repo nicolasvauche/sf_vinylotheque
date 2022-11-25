@@ -2,8 +2,28 @@
 
 {% block title %}Nouvel album{% endblock %}
 
+{% block body_class %}album{% endblock %}
+
 {% block body %}
     <section class="album">
         <h1>Nouvel album</h1>
+
+        <div class="results">
+            <div class="infos">
+                <p>Saisissez un album ou un artiste dans la zone de recherche ci-dessous</p>
+                <p>
+                    <i class="fa-solid fa-circle-arrow-down fa-2x text-primary"></i>
+                </p>
+            </div>
+        </div>
+
+        <form class="app-form">
+            <div class="form-group">
+                <input type="text" name="search" class="form-control" placeholder="Artiste ou album" />
+                <button type="submit" class="app-btn">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </div>
+        </form>
     </section>
 {% endblock %}

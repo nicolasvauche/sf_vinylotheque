@@ -6,6 +6,13 @@
     <section class="profile">
         <h1>Mon profil</h1>
 
+        <div class="actions">
+            <a href="#" class="text-danger" onclick="return window.confirm('Confirmez la déconnexion')">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span>Déconnexion</span>
+            </a>
+        </div>
+
         <form class="app-form">
             <div class="form-group">
                 <label for="userPseudo">Pseudo</label>
@@ -27,12 +34,5 @@
                 <button type="submit" class="app-btn" disabled aria-disabled="true">Enregistrer &raquo;</button>
             </div>
         </form>
-
-        <div class="actions">
-            <a href="#" class="text-danger" onclick="return window.confirm('Confirmez la déconnexion')">
-                <i class="fa-solid fa-right-from-bracket"></i>
-            </a>
-        </div>
-
     </section>
 {% endblock %}

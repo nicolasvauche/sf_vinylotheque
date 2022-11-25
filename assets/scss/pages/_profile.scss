@@ -1,13 +1,10 @@
 main {
     section {
         &.profile {
-            margin: 0.5rem 0.75rem;
-            padding: 3rem 1rem;
+            position: relative;
+            padding: 3rem 0;
             height: 70.625vh;
-            color: $color-white;
-            background-color: $color-black;
-            border-radius: 1.5rem;
-            box-shadow: 0.25rem 0.25rem 0.5rem rgba($color-black, 0.75);
+            background-color: rgba($color-black, 0.15);
 
             .actions {
                 display: flex;
@@ -20,9 +17,26 @@ main {
                     padding: 0.5rem;
 
                     i {
+                        margin-bottom: 0.25rem;
                         font-size: 3rem;
                     }
+
+                    span {
+                        display: block;
+                        font-size: 0.8rem;
+                        font-weight: bold;
+                    }
                 }
+            }
+
+            .app-form {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                margin: 1rem 0 0;
+                padding: 1.5rem;
+                border-radius: 0;
             }
         }
     }

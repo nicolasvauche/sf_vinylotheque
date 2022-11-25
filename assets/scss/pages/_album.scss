@@ -1,13 +1,70 @@
-main {
-    section {
+html {
+    body {
         &.album {
-            margin: 0.5rem 0.75rem;
-            padding: 3rem 1rem;
-            height: 70.625vh;
-            color: $color-white;
-            background-color: $color-black;
-            border-radius: 1.5rem;
-            box-shadow: 0.25rem 0.25rem 0.5rem rgba($color-black, 0.75);
+            .pushes {
+                display: none;
+            }
+
+            main {
+                section {
+                    &.album {
+                        position: relative;
+                        padding: 3rem 0;
+                        height: 70.625vh;
+                        background-color: rgba($color-black, 0.15);
+
+                        .results {
+                            padding: 1.5rem 1rem;
+
+                            p {
+                                margin-bottom: 1.5rem;
+
+                                &:last-child {
+                                    margin-bottom: 0;
+                                }
+                            }
+
+                            .infos{
+                                position: absolute;
+                                bottom: 6rem;
+                                left: 0;
+                                right: 0;
+                            }
+                        }
+
+                        .app-form {
+                            position: absolute;
+                            bottom: 0;
+                            left: 0;
+                            right: 0;
+                            margin: 1rem 0 0;
+                            padding: 1.5rem;
+                            border-radius: 0;
+
+                            .form-group {
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+
+                                .form-control {
+                                    border-right: none;
+                                    border-top-right-radius: 0;
+                                    border-bottom-right-radius: 0;
+                                }
+
+                                button[type="submit"] {
+                                    padding: 0.35rem 1rem;
+                                    width: auto;
+                                    background-color: $color-primary;
+                                    border-top-left-radius: 0;
+                                    border-bottom-left-radius: 0;
+                                    border-left: none;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

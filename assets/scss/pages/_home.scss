@@ -16,6 +16,7 @@ main {
                 justify-content: space-between;
                 padding: 1rem;
                 background-color: rgba($color-white, 1);
+                box-shadow: inset 1px 1px 1px rgba($color-black, 0.5);
 
                 span {
                     position: absolute;
@@ -31,13 +32,12 @@ main {
                 }
 
                 &.top {
-                    top: 0;
+                    top: -1px;
                     left: 50%;
                     flex-direction: column;
                     padding-top: 2rem;
-                    color: $color-white;
-                    background-color: rgba($color-red, 1);
-                    border: 1px solid rgba($color-red, 1);
+                    width: 2rem;
+                    color: $color-green;
                     border-bottom-left-radius: 2rem;
                     border-bottom-right-radius: 2rem;
                     transform: translateX(-50%);
@@ -45,7 +45,7 @@ main {
                     span {
                         top: 0.25rem;
                         left: 50%;
-                        color: rgba($color-white, 0.75);
+                        color: rgba($color-green, 0.75);
                         transform: translateX(-50%);
 
                         i {
@@ -60,8 +60,9 @@ main {
 
                 &.left {
                     top: 50%;
-                    left: 0;
+                    left: -1px;
                     padding-left: 2rem;
+                    height: calc(2rem - 2px);
                     color: $color-black;
                     border: 1px solid rgba($color-black, 0.5);
                     border-top-right-radius: 2rem;
@@ -78,11 +79,10 @@ main {
 
                 &.right {
                     top: 50%;
-                    right: 0;
+                    right: -1px;
                     padding-right: 2rem;
-                    color: $color-white;
-                    background-color: rgba($color-blue, 1);
-                    border: 1px solid rgba($color-blue, 1);
+                    height: 2rem;
+                    color: $color-blue;
                     border-top-left-radius: 2rem;
                     border-bottom-left-radius: 2rem;
                     transform: translateY(-50%);
@@ -90,7 +90,7 @@ main {
                     span {
                         top: 50%;
                         right: 0.25rem;
-                        color: rgba($color-white, 0.75);
+                        color: rgba($color-blue, 0.75);
                         transform: translateY(-50%);
                     }
                 }
