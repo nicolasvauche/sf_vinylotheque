@@ -2,28 +2,49 @@
 
 {% block title %}Nouvel album{% endblock %}
 
+{% block javascripts %}
+    <script src="{{ asset('build/js/newalbum.js') }}" defer></script>
+{% endblock %}
+
 {% block body_class %}album{% endblock %}
 
 {% block body %}
     <section class="album">
         <h1>Nouvel album</h1>
 
-        <div class="results">
-            <div class="infos">
-                <p>Saisissez un album ou un artiste dans la zone de recherche ci-dessous</p>
-                <p>
-                    <i class="fa-solid fa-circle-arrow-down fa-2x text-primary"></i>
-                </p>
-            </div>
-        </div>
+        {% if results %}
+            {% set album = results[0] %}
+            <div class="results" data-albumid="{{ album.id }}" data-albumtype="{{ album.type }}">
+                <figure class="app-image">
+                    <a href="#" class="action top">
+                        <span>
+                            <i class="fa-solid fa-arrow-up-long"></i>
+                        </span>
+                        <i class="fa-solid fa-circle-plus"></i>
+                    </a>
+                    <img src="{{ album.cover }}" alt="{{ album.artist ~ ' - ' ~ album.title }}" />
+                </figure>
 
-        <form class="app-form">
-            <div class="form-group">
-                <input type="text" name="search" class="form-control" placeholder="Artiste ou album" />
-                <button type="submit" class="app-btn">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
+                <div class="infos">
+                    <div class="content">
+                        <h2>{{ album.title }}</h2>
+                    </div>
+                </div>
             </div>
-        </form>
+        {% else %}
+            <img src="{{ asset('build/img/discogsapi.png') }}" alt="Discogs API" width="80%" />
+            <p>Rechercher avec Discogs API</p>
+        {% endif %}
+
+        {{ form_start(form, {'attr': {'class': 'app-form'}}) }}
+        <div class="form-group">
+            {{ form_widget(form.artistName) }}
+            {{ form_widget(form.albumName) }}
+            {{ form_widget(form._token) }}
+            <button type="submit" class="app-btn">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </div>
+        {{ form_end(form) }}
     </section>
 {% endblock %}
