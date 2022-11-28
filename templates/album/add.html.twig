@@ -2,6 +2,10 @@
 
 {% block title %}Nouvel album{% endblock %}
 
+{% block javascripts %}
+    <script src="{{ asset('build/js/newalbum.js') }}" defer></script>
+{% endblock %}
+
 {% block body_class %}album{% endblock %}
 
 {% block body %}
@@ -9,8 +13,8 @@
         <h1>Nouvel album</h1>
 
         {% if results %}
-            <div class="results">
-                {% set album = results[0] %}
+            {% set album = results[0] %}
+            <div class="results" data-albumid="{{ album.id }}" data-albumtype="{{ album.type }}">
                 <figure class="app-image">
                     <a href="#" class="action top">
                         <span>
@@ -18,27 +22,12 @@
                         </span>
                         <i class="fa-solid fa-circle-plus"></i>
                     </a>
-                    <a href="#" class="action left">
-                        <span>
-                            <i class="fa-solid fa-arrow-left-long"></i>
-                        </span>
-                        <i class="fa-solid fa-x"></i>
-                    </a>
-                    <a href="#" class="action right">
-                        <span>
-                            <i class="fa-solid fa-arrow-right-long"></i>
-                        </span>
-                        <i class="fa-solid fa-pen-to-square"></i>
-                    </a>
                     <img src="{{ album.cover }}" alt="{{ album.artist ~ ' - ' ~ album.title }}" />
                 </figure>
 
                 <div class="infos">
                     <div class="content">
-                        <h2>
-                            {{ album.title }}
-                            <small>(1/{{ results | length }})</small>
-                        </h2>
+                        <h2>{{ album.title }}</h2>
                     </div>
                 </div>
             </div>

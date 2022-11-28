@@ -13,7 +13,7 @@ class DiscogsApiService
         $this->discogsClient = $discogsClient;
     }
 
-    public function search($artistName, $albumName)
+    public function search(string $artistName, string $albumName)
     {
         $allResults = [];
         if ($artistName && $albumName) {
@@ -30,14 +30,15 @@ class DiscogsApiService
                 'release_title' => $albumName,
             ];
         }
-        $req['type'] = 'master';
+
         $req['format_exact'] = 'Vinyl';
-        $req['per_page'] = 10;
+        $req['per_page'] = 100;
         $req['page'] = 1;
 
         $results = $this->discogsClient->search($req);
+
         foreach ($results['results'] as $result) {
-            if ($result['cover_image']) {
+            if ($result['cover_image'] && in_array('Vinyl', $result['format']) && in_array('LP', $result['format']) && ($result['type'] === 'master' || $result['type'] === 'release')) {
                 $result['artist'] = $artistName;
                 $result['cover'] = $result['cover_image'];
                 unset($result['cover_image']);
@@ -46,5 +47,37 @@ class DiscogsApiService
         }
 
         return $allResults;
+    }
+
+    public function searchMaster(int $id)
+    {
+        $results = $this->discogsClient->getMaster(['id' => $id])->toArray();
+        if ($results) {
+            $result = [
+                'discogsId' => $results['id'],
+                'artist' => $results['artists']['0']['name'],
+                'title' => $results['title'],
+                'year' => $results['year'],
+                'cover' => $results['images'][0]['resource_url'],
+            ];
+        }
+
+        return $result ?? null;
+    }
+
+    public function searchRelease(int $id)
+    {
+        $results = $this->discogsClient->getRelease(['id' => $id])->toArray();
+        if ($results) {
+            $result = [
+                'discogsId' => $results['id'],
+                'artist' => $results['artists']['0']['name'],
+                'title' => $results['title'],
+                'year' => $results['year'],
+                'cover' => $results['images'][0]['resource_url'],
+            ];
+        }
+
+        return $result ?? null;
     }
 }

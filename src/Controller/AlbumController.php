@@ -20,8 +20,8 @@ class AlbumController extends AbstractController
         ]);
     }
 
-    #[Route('/ajouter', name: 'add')]
-    public function add(Request $request, DiscogsApiService $discogsApiService): Response
+    #[Route('/rechercher', name: 'search')]
+    public function search(Request $request, DiscogsApiService $discogsApiService): Response
     {
         $form = $this->createForm(DiscogsApiSearchType::class);
         $form->handleRequest($request);
@@ -36,6 +36,22 @@ class AlbumController extends AbstractController
         return $this->renderForm('album/add.html.twig', [
             'form' => $form,
             'results' => $results ?? null,
+        ]);
+    }
+
+    #[Route('/ajouter/{type}/{id}', name: 'add')]
+    public function add(DiscogsApiService $discogsApiService, $type, $id): Response
+    {
+        if($type === 'master'){
+            $result = $discogsApiService->searchMaster($id);
+        }else{
+            $result = $discogsApiService->searchRelease($id);
+        }
+
+        dd($result);
+
+        return $this->renderForm('album/add.html.twig', [
+            'result' => $result ?? null,
         ]);
     }
 }
