@@ -4,9 +4,11 @@ namespace App\Controller;
 
 use App\Entity\Album;
 use App\Entity\Artist;
+use App\Entity\UserAlbum;
 use App\Form\DiscogsApiSearchType;
 use App\Repository\AlbumRepository;
 use App\Repository\ArtistRepository;
+use App\Repository\UserAlbumRepository;
 use App\Service\DiscogsApiService;
 use Gedmo\Sluggable\Sluggable;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -46,7 +48,7 @@ class AlbumController extends AbstractController
     }
 
     #[Route('/ajouter/{type}/{id}', name: 'add')]
-    public function add(DiscogsApiService $discogsApiService, ArtistRepository $artistRepository, AlbumRepository $albumRepository, SluggerInterface $slugger, $type, $id): Response
+    public function add(DiscogsApiService $discogsApiService, ArtistRepository $artistRepository, AlbumRepository $albumRepository, UserAlbumRepository $userAlbumRepository, SluggerInterface $slugger, $type, $id): Response
     {
         if ($type === 'master') {
             $result = $discogsApiService->searchMaster($id);
@@ -86,6 +88,13 @@ class AlbumController extends AbstractController
                     ->setCover($filename)
                     ->setArtist($artist);
                 $albumRepository->save($album, true);
+
+                $userAlbum = new UserAlbum();
+                $userAlbum->setUser($this->getUser())
+                    ->setAlbum($album)
+                    ->setPlayed(0)
+                    ->setFavorite(false);
+                $userAlbumRepository->save($userAlbum, true);
 
                 $this->addFlash('success', "L'album {$album->getTitle()} a été ajouté à ta vinylothèque !");
             }

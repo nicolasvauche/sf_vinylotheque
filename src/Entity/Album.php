@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\AlbumRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
@@ -33,6 +35,14 @@ class Album
     #[ORM\ManyToOne(inversedBy: 'albums')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Artist $artist = null;
+
+    #[ORM\OneToMany(mappedBy: 'album', targetEntity: UserAlbum::class)]
+    private Collection $userAlbums;
+
+    public function __construct()
+    {
+        $this->userAlbums = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -107,6 +117,36 @@ class Album
     public function setArtist(?Artist $artist): self
     {
         $this->artist = $artist;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, UserAlbum>
+     */
+    public function getUserAlbums(): Collection
+    {
+        return $this->userAlbums;
+    }
+
+    public function addUserAlbum(UserAlbum $userAlbum): self
+    {
+        if (!$this->userAlbums->contains($userAlbum)) {
+            $this->userAlbums->add($userAlbum);
+            $userAlbum->setAlbum($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserAlbum(UserAlbum $userAlbum): self
+    {
+        if ($this->userAlbums->removeElement($userAlbum)) {
+            // set the owning side to null (unless already changed)
+            if ($userAlbum->getAlbum() === $this) {
+                $userAlbum->setAlbum(null);
+            }
+        }
 
         return $this;
     }

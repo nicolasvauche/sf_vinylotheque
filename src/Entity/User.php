@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -37,6 +39,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     #[Gedmo\Timestampable(on: 'create')]
     private ?\DateTimeImmutable $createdAt = null;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: UserAlbum::class)]
+    private Collection $userAlbums;
+
+    public function __construct()
+    {
+        $this->userAlbums = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -140,6 +150,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setCreatedAt(\DateTimeImmutable $createdAt): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, UserAlbum>
+     */
+    public function getUserAlbums(): Collection
+    {
+        return $this->userAlbums;
+    }
+
+    public function addUserAlbum(UserAlbum $userAlbum): self
+    {
+        if (!$this->userAlbums->contains($userAlbum)) {
+            $this->userAlbums->add($userAlbum);
+            $userAlbum->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserAlbum(UserAlbum $userAlbum): self
+    {
+        if ($this->userAlbums->removeElement($userAlbum)) {
+            // set the owning side to null (unless already changed)
+            if ($userAlbum->getUser() === $this) {
+                $userAlbum->setUser(null);
+            }
+        }
 
         return $this;
     }
