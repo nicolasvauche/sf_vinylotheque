@@ -55,7 +55,11 @@ class DiscogsApiService
         if ($results) {
             $result = [
                 'discogsId' => $results['id'],
-                'artist' => $results['artists']['0']['name'],
+                'artist' => [
+                    'discogsId' => $results['artists']['0']['id'],
+                    'name' => $results['artists']['0']['name'],
+                    'cover' => $results['artists'][0]['thumbnail_url'] ?? null,
+                ],
                 'title' => $results['title'],
                 'year' => $results['year'],
                 'cover' => $results['images'][0]['resource_url'],
@@ -71,7 +75,11 @@ class DiscogsApiService
         if ($results) {
             $result = [
                 'discogsId' => $results['id'],
-                'artist' => $results['artists']['0']['name'],
+                'artist' => [
+                    'discogsId' => $results['artists'][0]['id'],
+                    'name' => $results['artists'][0]['name'],
+                    'cover' => $results['artists'][0]['thumbnail_url'] ?? null,
+                ],
                 'title' => $results['title'],
                 'year' => $results['year'],
                 'cover' => $results['images'][0]['resource_url'],

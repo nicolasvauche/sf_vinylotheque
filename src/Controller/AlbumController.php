@@ -2,7 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Album;
+use App\Entity\Artist;
 use App\Form\DiscogsApiSearchType;
+use App\Repository\AlbumRepository;
+use App\Repository\ArtistRepository;
 use App\Service\DiscogsApiService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -40,18 +44,38 @@ class AlbumController extends AbstractController
     }
 
     #[Route('/ajouter/{type}/{id}', name: 'add')]
-    public function add(DiscogsApiService $discogsApiService, $type, $id): Response
+    public function add(DiscogsApiService $discogsApiService, ArtistRepository $artistRepository, AlbumRepository $albumRepository, $type, $id): Response
     {
-        if($type === 'master'){
+        if ($type === 'master') {
             $result = $discogsApiService->searchMaster($id);
-        }else{
+        } else {
             $result = $discogsApiService->searchRelease($id);
         }
 
-        dd($result);
+        if ($result) {
+            $artist = $artistRepository->findOneBy(['discogsId' => $result['artist']['discogsId']]);
+            if (!$artist) {
+                $artist = new Artist();
+                $artist->setDiscogsId($result['artist']['discogsId'])
+                    ->setName($result['artist']['name'])
+                    ->setCover($result['artist']['cover']);
+                $artistRepository->save($artist, true);
+            }
 
-        return $this->renderForm('album/add.html.twig', [
-            'result' => $result ?? null,
-        ]);
+            $album = $albumRepository->findOneBy(['discogsId' => $result['discogsId']]);
+            if (!$album) {
+                $album = new Album();
+                $album->setDiscogsId($result['discogsId'])
+                    ->setTitle($result['title'])
+                    ->setYear($result['year'])
+                    ->setCover($result['cover'])
+                    ->setArtist($artist);
+                $albumRepository->save($album, true);
+
+                $this->addFlash('success', "L'album {$album->getTitle()} a été ajouté à ta vinylothèque !");
+            }
+        }
+
+        return $this->redirectToRoute('app_home');
     }
 }
