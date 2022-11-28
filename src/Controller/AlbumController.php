@@ -2,7 +2,10 @@
 
 namespace App\Controller;
 
+use App\Form\DiscogsApiSearchType;
+use App\Service\DiscogsApiService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -18,10 +21,21 @@ class AlbumController extends AbstractController
     }
 
     #[Route('/ajouter', name: 'add')]
-    public function add(): Response
+    public function add(Request $request, DiscogsApiService $discogsApiService): Response
     {
-        return $this->render('album/add.html.twig', [
-            'controller_name' => 'AlbumController',
+        $form = $this->createForm(DiscogsApiSearchType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $results = $discogsApiService->search(
+                $form->get('artistName')->getData(),
+                $form->get('albumName')->getData()
+            );
+        }
+
+        return $this->renderForm('album/add.html.twig', [
+            'form' => $form,
+            'results' => $results ?? null,
         ]);
     }
 }
