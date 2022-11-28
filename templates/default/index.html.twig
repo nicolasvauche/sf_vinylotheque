@@ -42,7 +42,7 @@
                 </span>
                     <i class="fa-solid fa-pen-to-square"></i>
                 </a>
-                 <img src="{{ asset('img/album/' ~ album.cover) }}" alt="{{ album.artist ~ ' - ' ~ album.title }}" />
+                <img src="{{ asset('img/album/' ~ album.cover) }}" alt="{{ album.artist ~ ' - ' ~ album.title }}" />
             </figure>
 
             <div class="infos">
@@ -51,8 +51,8 @@
                     <h2>{{ album.artist }}</h2>
                 </div>
                 <div class="actions">
-                    <a href="#">
-                        <i class="fa-regular fa-heart"></i>
+                    <a href="#" id="like" data-albumid="{{ album.id }}">
+                        <i class="fa-{% if userAlbum.favorite %}solid{% else %}regular{% endif %} fa-heart"></i>
                     </a>
                 </div>
             </div>

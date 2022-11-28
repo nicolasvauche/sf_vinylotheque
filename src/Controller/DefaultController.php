@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Album;
 use App\Repository\AlbumRepository;
 use App\Repository\UserAlbumRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -26,8 +27,11 @@ class DefaultController extends AbstractController
         }
 
         if ($albums) {
+            $album = $albums[array_rand($albums, 1)];
+
             return $this->render('default/index.html.twig', [
-                'album' => $albums ? $albums[array_rand($albums, 1)] : null,
+                'album' => $album,
+                'userAlbum' => $userAlbumRepository->findOneBy(['user' => $this->getUser(), 'album' => $album]),
             ]);
         } else {
             return $this->redirectToRoute('app_album_search');
@@ -60,5 +64,24 @@ class DefaultController extends AbstractController
             ],
             'id' => $id,
         ]);
+    }
+
+    #[Route('/like/{id}', name: 'app_home_like')]
+    public function like(UserAlbumRepository $userAlbumRepository, Album $album)
+    {
+        $userAlbum = $userAlbumRepository->findOneBy(['user' => $this->getUser(), 'album' => $album]);
+        if ($userAlbum) {
+            if ($userAlbum->isFavorite()) {
+                $userAlbum->setFavorite(false);
+                $userAlbumRepository->save($userAlbum, true);
+
+                return $this->json('unlike');
+            } else {
+                $userAlbum->setFavorite(true);
+                $userAlbumRepository->save($userAlbum, true);
+
+                return $this->json('like');
+            }
+        }
     }
 }
