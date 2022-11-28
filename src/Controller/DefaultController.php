@@ -22,9 +22,13 @@ class DefaultController extends AbstractController
             ];
         }
 
-        return $this->render('default/index.html.twig', [
-            'album' => $albums ? $albums[array_rand($albums, 1)] : null,
-        ]);
+        if ($albums) {
+            return $this->render('default/index.html.twig', [
+                'album' => $albums ? $albums[array_rand($albums, 1)] : null,
+            ]);
+        } else {
+            return $this->redirectToRoute('app_album_search');
+        }
     }
 
     #[Route('/ecouter/{id}', name: 'app_home_listen')]

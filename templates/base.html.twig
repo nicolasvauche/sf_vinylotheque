@@ -25,32 +25,42 @@
     </head>
 
     <body class="{% block body_class %}{% endblock %}">
-        <nav class="app-navigation">
-            <a href="{{ path('app_home') }}" {% if app.request.get('_route') == 'app_home' %}class="active"{% endif %}>
-                <i class="fa-regular fa-circle-play"></i>
-                Play
-            </a>
-            <a href="{{ path('app_album_search') }}" class="text-success {% if app.request.get('_route') == 'app_album_search' or app.request.get('_route') == 'app_album_add' %}active{% endif %}">
-                <i class="fa-solid fa-circle-plus"></i>
-                New
-            </a>
-            <a href="{{ path('app_user_profile') }}" {% if app.request.get('_route') == 'app_user_profile' %}class="active"{% endif %}>
-                <i class="fa-solid fa-circle-user"></i>
-                Profil
-            </a>
-        </nav>
+        {% if app.user %}
+            <nav class="app-navigation">
+                <a href="{{ path('app_home') }}" {% if app.request.get('_route') == 'app_home' %}class="active"{% endif %}>
+                    <i class="fa-regular fa-circle-play"></i>
+                    Play
+                </a>
+                <a href="{{ path('app_album_search') }}" class="text-success {% if app.request.get('_route') == 'app_album_search' or app.request.get('_route') == 'app_album_add' %}active{% endif %}">
+                    <i class="fa-solid fa-circle-plus"></i>
+                    New
+                </a>
+                <a href="{{ path('app_user_profile') }}" {% if app.request.get('_route') == 'app_user_profile' %}class="active"{% endif %}>
+                    <i class="fa-solid fa-circle-user"></i>
+                    Profil
+                </a>
+            </nav>
 
-        <div class="pushes">
-            <a href="#" class="app-push">
-                <i class="fa-regular fa-face-angry"></i>
-            </a>
+            <div class="pushes">
+                <a href="#" class="app-push">
+                    <i class="fa-regular fa-face-angry"></i>
+                </a>
 
-            <a href="#" class="app-push">
-                <i class="fa-solid fa-cloud"></i>
-            </a>
-        </div>
+                <a href="#" class="app-push">
+                    <i class="fa-solid fa-cloud"></i>
+                </a>
+            </div>
+        {% endif %}
 
         <main>
+            {% for label, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="app-alert {{ label }}">
+                        <p>{{ message }}</p>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+
             {% block body %}{% endblock %}
         </main>
     </body>

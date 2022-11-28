@@ -23,14 +23,6 @@
 {% block body %}
     {% if album %}
         <section class="suggestion" data-albumid="{{ album.id }}">
-            {% for label, messages in app.flashes %}
-                {% for message in messages %}
-                    <div class="app-alert {{ label }}">
-                        <p>{{ message }}</p>
-                    </div>
-                {% endfor %}
-            {% endfor %}
-
             <figure class="app-image">
                 <a href="#" class="action top">
                 <span>

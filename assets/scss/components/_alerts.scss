@@ -1,11 +1,10 @@
 .app-alert {
     z-index: 9999;
     position: absolute;
-    top: 20%;
-    left: 2rem;
-    right: 2rem;
+    top: 0;
+    left: 0;
+    right: 0;
     padding: 2rem 1rem;
-    border-radius: 2.5rem;
     animation: autoHide 0.8s 3s forwards;
 
     &.success {
