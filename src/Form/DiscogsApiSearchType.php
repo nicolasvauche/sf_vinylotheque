@@ -16,14 +16,14 @@ class DiscogsApiSearchType extends AbstractType
                 'required' => true,
                 'attr' => [
                     'class' => 'form-control',
-                    'placeholder' => 'Artiste',
+                    'placeholder' => 'Artiste*',
                 ],
             ])
             ->add('albumName', TextType::class, [
                 'required' => true,
                 'attr' => [
                     'class' => 'form-control',
-                    'placeholder' => 'Album',
+                    'placeholder' => 'Album*',
                 ],
             ]);
     }

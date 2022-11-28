@@ -29,11 +29,11 @@
             <nav class="app-navigation">
                 <a href="{{ path('app_home') }}" {% if app.request.get('_route') == 'app_home' %}class="active"{% endif %}>
                     <i class="fa-regular fa-circle-play"></i>
-                    Play
+                    Écoute
                 </a>
                 <a href="{{ path('app_album_search') }}" class="text-success {% if app.request.get('_route') == 'app_album_search' or app.request.get('_route') == 'app_album_add' %}active{% endif %}">
                     <i class="fa-solid fa-circle-plus"></i>
-                    New
+                    Ajoute
                 </a>
                 <a href="{{ path('app_user_profile') }}" {% if app.request.get('_route') == 'app_user_profile' %}class="active"{% endif %}>
                     <i class="fa-solid fa-circle-user"></i>
