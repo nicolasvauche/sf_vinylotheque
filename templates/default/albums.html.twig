@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Tous tes albums
+{% endblock %}
+
+{% block body_class %}album scrollable{% endblock %}
+
+{% block body %}
+    <section class="list">
+        <h1>
+            <a href="{{ path('app_home') }}">&laquo;</a>&nbsp;
+            Tous tes albums
+        </h1>
+
+        <div class="app-grid">
+            {% for userAlbum in userAlbums %}
+                <div class="grid-item">
+                    <a href="{{ path('app_album_edit', {'id': userAlbum.album.id}) }}">
+                        <img src="{{ asset('img/album/' ~ userAlbum.album.cover) }}" alt="{{ userAlbum.album.title }}" class="item-img" />
+                        <h2 class="item-title">{{ userAlbum.album.title }}</h2>
+                        <h3>
+                            {{ userAlbum.album.artist.name }}
+                            <small>{{ userAlbum.album.year }}</small>
+                        </h3>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}

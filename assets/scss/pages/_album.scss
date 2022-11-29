@@ -221,7 +221,7 @@ html {
 
                     &.edit {
                         padding: 1.5rem 0;
-                        height: calc(100vh - 8rem);
+                        min-height: calc(100vh - 8rem);
                         background-color: rgba($color-black, 0.15);
 
                         & > img {
@@ -230,6 +230,23 @@ html {
                             height: calc(100vh - 28rem);
                             width: 100%;
                             object-fit: contain;
+                        }
+                    }
+
+                    &.list {
+                        min-height: calc(100vh - 8rem);
+                        background-color: rgba($color-black, 0.15);
+
+                        h1 {
+                            position: sticky;
+                            top: 0;
+                            padding: 0.75rem 0.5rem;
+                            color: $color-white;
+                            background-color: $color-primary;
+                        }
+
+                        .app-grid {
+                            padding: 0.25rem 0 0;
                         }
                     }
                 }

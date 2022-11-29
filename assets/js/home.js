@@ -52,8 +52,7 @@ window.addEventListener('DOMContentLoaded', () => {
           })
         Promise.all(suggestionElt.getAnimations().map((animation) => animation.finished)).then(
           () => {
-            window.alert('Modification')
-            window.location.href = '/'
+            window.location.href = '/album/modifier/' + suggestionElt.dataset.albumid
           }
         )
       }

@@ -89,4 +89,12 @@ class DefaultController extends AbstractController
             }
         }
     }
+
+    #[Route('/albums', name: 'app_home_albums')]
+    public function albums(UserAlbumRepository $userAlbumRepository)
+    {
+        return $this->render('default/albums.html.twig', [
+            'userAlbums' => $this->getUser()->getUserAlbums(),
+        ]);
+    }
 }

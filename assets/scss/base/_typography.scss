@@ -27,6 +27,16 @@ h2 {
     color: $color-red !important;
 }
 
+.bg-primary {
+    color: $color-white !important;
+    background-color: $color-primary !important;
+}
+
+.bg-happy {
+    color: $color-white !important;
+    background-color: $color-yellow !important;
+}
+
 .bg-red {
     color: $color-white !important;
     background-color: $color-red !important;
