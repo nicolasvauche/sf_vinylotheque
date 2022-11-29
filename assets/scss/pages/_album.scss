@@ -1,0 +1,239 @@
+html {
+    body {
+        &.album {
+            .pushes {
+                display: none;
+            }
+
+            main {
+                section {
+                    &.album {
+                        position: relative;
+                        padding: 1.5rem 0;
+                        height: calc(100vh - 9rem);
+                        background-color: rgba($color-black, 0.15);
+
+                        & > img {
+                            display: block;
+                            margin: 1rem auto 0;
+                            height: 20vh;
+
+                            &:first-of-type {
+                                height: 30vh;
+                            }
+                        }
+
+                        .results {
+                            position: relative;
+                            margin: 0.5rem 0.75rem;
+                            color: $color-white;
+                            background-color: $color-black;
+                            border-radius: 1.5rem;
+                            box-shadow: 0.25rem 0.25rem 0.5rem rgba($color-black, 0.75);
+
+                            .action {
+                                z-index: 9998;
+                                position: absolute;
+                                display: flex;
+                                align-items: center;
+                                justify-content: space-between;
+                                padding: 1rem;
+                                background-color: rgba($color-white, 1);
+                                box-shadow: inset 1px 1px 1px rgba($color-black, 0.5);
+
+                                span {
+                                    position: absolute;
+
+                                    i {
+                                        font-size: 1.25rem;
+                                        text-shadow: 1px 1px 2px rgba($color-black, 0.5);
+                                    }
+                                }
+
+                                i {
+                                    font-size: 1.5rem;
+                                }
+
+                                &.top {
+                                    top: -1px;
+                                    left: 50%;
+                                    flex-direction: column;
+                                    padding-top: 2rem;
+                                    width: 2rem;
+                                    color: $color-green;
+                                    border-bottom-left-radius: 2rem;
+                                    border-bottom-right-radius: 2rem;
+                                    transform: translateX(-50%);
+
+                                    span {
+                                        top: 0.25rem;
+                                        left: 50%;
+                                        color: rgba($color-green, 0.75);
+                                        transform: translateX(-50%);
+
+                                        i {
+                                            font-size: 1.25rem;
+                                        }
+                                    }
+
+                                    i {
+                                        font-size: 1.75rem;
+                                    }
+                                }
+
+                                &.left {
+                                    top: 50%;
+                                    left: -1px;
+                                    padding-left: 2rem;
+                                    height: calc(2rem - 2px);
+                                    color: $color-black;
+                                    border: 1px solid rgba($color-black, 0.5);
+                                    border-top-right-radius: 2rem;
+                                    border-bottom-right-radius: 2rem;
+                                    transform: translateY(-50%);
+
+                                    span {
+                                        top: 50%;
+                                        left: 0.25rem;
+                                        color: rgba($color-black, 0.75);
+                                        transform: translateY(-50%);
+                                    }
+                                }
+
+                                &.right {
+                                    top: 50%;
+                                    right: -1px;
+                                    padding-right: 2rem;
+                                    height: 2rem;
+                                    color: $color-blue;
+                                    border-top-left-radius: 2rem;
+                                    border-bottom-left-radius: 2rem;
+                                    transform: translateY(-50%);
+
+                                    span {
+                                        top: 50%;
+                                        right: 0.25rem;
+                                        color: rgba($color-blue, 0.75);
+                                        transform: translateY(-50%);
+                                    }
+                                }
+                            }
+
+                            figure {
+                                position: relative;
+                                padding: 2px;
+                                border-radius: inherit;
+
+                                img {
+                                    display: block;
+                                    width: 100%;
+                                    height: calc(100vh - 17rem);
+                                    object-fit: cover;
+                                    border-radius: inherit;
+                                }
+                            }
+
+                            .infos {
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                gap: 0.5rem;
+                                padding: 0.5rem 1.5rem 1rem;
+                                overflow: hidden;
+                                white-space: nowrap;
+                                text-overflow: ellipsis;
+
+                                .content {
+                                    text-align: left;
+                                    overflow: hidden;
+                                    white-space: nowrap;
+                                    text-overflow: ellipsis;
+
+                                    h2 {
+                                        margin-top: 0.5rem;
+                                        overflow: hidden;
+                                        text-overflow: ellipsis;
+                                        color: $color-white;
+                                    }
+                                }
+
+                                .actions {
+                                    a {
+                                        i {
+                                            font-size: 2.5rem;
+                                            color: rgba($color-white, 0.5);
+
+                                            &.fa-solid {
+                                                color: $color-red;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            p {
+                                margin-bottom: 1.5rem;
+
+                                &:last-child {
+                                    margin-bottom: 0;
+                                }
+                            }
+                        }
+
+                        .app-form {
+                            position: absolute;
+                            bottom: 0;
+                            left: 0;
+                            right: 0;
+                            margin: 1rem 0 0;
+                            padding: 0.5rem;
+                            border-radius: 0;
+
+                            .form-group {
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+
+                                .form-control {
+                                    border-right: none;
+
+                                    &:first-child {
+                                        border-top-right-radius: 0;
+                                        border-bottom-right-radius: 0;
+                                    }
+
+                                    &:nth-child(2) {
+                                        border-radius: 0;
+                                    }
+                                }
+
+                                button[type="submit"] {
+                                    padding: 0.35rem 0.5rem;
+                                    width: auto;
+                                    background-color: $color-primary;
+                                    border-top-left-radius: 0;
+                                    border-bottom-left-radius: 0;
+                                    border-left: none;
+                                }
+                            }
+                        }
+                    }
+
+                    &.edit {
+                        padding: 1.5rem 0;
+                        height: calc(100vh - 8rem);
+                        background-color: rgba($color-black, 0.15);
+
+                        & > img {
+                            display: block;
+                            margin: 1rem 0 0;
+                            height: calc(100vh - 28rem);
+                            width: 100%;
+                            object-fit: contain;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

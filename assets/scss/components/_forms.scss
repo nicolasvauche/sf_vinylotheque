@@ -29,13 +29,13 @@
 
         .form-control {
             box-sizing: border-box;
-            padding: 0.5rem 1rem;
+            padding: 0.25rem 1rem;
             width: 100%;
             font-family: $font-primary;
             font-size: 1rem;
             text-align: center;
             background-color: $color-white;
-            border: 1px solid $color-black;
+            border: 1px solid $color-primary;
             border-radius: 0.5rem;
 
             &.error {
@@ -47,7 +47,15 @@
         button[type="submit"] {
             font-size: 1.25rem;
             color: $color-white;
+            border-color: $color-green;
             background-color: $color-green;
+        }
+
+        .error, & > ul > li {
+            margin-top: 0.25rem;
+            font-size: 0.85rem;
+            font-weight: bold;
+            color: $color-red;
         }
     }
 }

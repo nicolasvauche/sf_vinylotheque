@@ -124,12 +124,30 @@ window.addEventListener('DOMContentLoaded', () => {
           })
         Promise.all(suggestionElt.getAnimations().map((animation) => animation.finished)).then(
           () => {
-            window.alert('Modification')
-            window.location.href = '/'
+            window.location.href = '/album/modifier/' + suggestionElt.dataset.albumid
           }
         )
       }
     })
   })
   /* < CLICK */
+
+  /* LIKE > */
+  const likeBtn = document.getElementById('like')
+  likeBtn.addEventListener('click', e => {
+    e.preventDefault()
+    fetch('/like/' + likeBtn.dataset.albumid)
+      .then(response => response.json())
+      .then(response => {
+        console.log(response)
+        if (response === 'like') {
+          likeBtn.querySelector('i').classList.remove('fa-regular')
+          likeBtn.querySelector('i').classList.add('fa-solid')
+        } else {
+          likeBtn.querySelector('i').classList.remove('fa-solid')
+          likeBtn.querySelector('i').classList.add('fa-regular')
+        }
+      })
+  })
+  /* < LIKE */
 })

@@ -1,6 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}On écoute {{ album.artist }} ?{% endblock %}
+{% block title %}
+    {% if album %}
+        On écoute {{ album.artist }} ?
+    {% else %}
+        Accueil
+    {% endif %}
+{% endblock %}
 
 {% block meta %}
     {% if id is defined %}
@@ -15,47 +21,44 @@
 {% block body_class %}home{% endblock %}
 
 {% block body %}
-    <section class="suggestion" id="touch-area" data-albumid="{{ album.id }}">
-        {% for label, messages in app.flashes %}
-            {% for message in messages %}
-                <div class="app-alert {{ label }}">
-                    <p>{{ message }}</p>
-                </div>
-            {% endfor %}
-        {% endfor %}
-
-        <figure class="app-image">
-            <a href="#" class="action top">
+    {% if album %}
+        <section class="suggestion" data-albumid="{{ album.id }}">
+            <figure class="app-image">
+                <a href="#" class="action top">
                 <span>
                     <i class="fa-solid fa-arrow-up-long"></i>
                 </span>
-                <i class="fa-solid fa-circle-play"></i>
-            </a>
-            <a href="#" class="action left">
+                    <i class="fa-solid fa-circle-play"></i>
+                </a>
+                <a href="#" class="action left">
                 <span>
                     <i class="fa-solid fa-arrow-left-long"></i>
                 </span>
-                <i class="fa-solid fa-x"></i>
-            </a>
-            <a href="#" class="action right">
+                    <i class="fa-solid fa-x"></i>
+                </a>
+                <a href="#" class="action right">
                 <span>
                     <i class="fa-solid fa-arrow-right-long"></i>
                 </span>
-                <i class="fa-solid fa-pen-to-square"></i>
-            </a>
-            <img src="{{ asset('build/img/' ~ album.cover) }}" alt="{{ album.artist ~ ' - ' ~ album.title }}" />
-        </figure>
-
-        <div class="infos">
-            <div class="content">
-                <h1>{{ album.title }}</h1>
-                <h2>{{ album.artist }}</h2>
-            </div>
-            <div class="actions">
-                <a href="#">
-                    <i class="fa-regular fa-heart"></i>
+                    <i class="fa-solid fa-pen-to-square"></i>
                 </a>
+                <img src="{{ asset('img/album/' ~ album.cover) }}" alt="{{ album.artist ~ ' - ' ~ album.title }}" />
+            </figure>
+
+            <div class="infos">
+                <div class="content">
+                    <h1>{{ album.title }}</h1>
+                    <h2>
+                        {{ album.artist }}
+                        <small>{{ album.year }}</small>
+                    </h2>
+                </div>
+                <div class="actions">
+                    <a href="#" id="like" data-albumid="{{ album.id }}">
+                        <i class="fa-{% if album.favorite %}solid{% else %}regular{% endif %} fa-heart"></i>
+                    </a>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    {% endif %}
 {% endblock %}

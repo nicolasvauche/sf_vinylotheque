@@ -2,6 +2,8 @@
 
 @import "base/reset", "base/typography";
 
-@import "layout/default", "layout/main", "layout/navigation";
+@import "layout/default", "layout/navigation";
 
 @import "components/push", "components/alerts", "components/forms", "components/buttons";
+
+@import "pages/home", "pages/profile", "pages/album", "pages/login";

@@ -25,6 +25,12 @@ Encore
     pattern: /\.(png|jpg|webp)$/
   })
 
+  .copyFiles({
+    from: './assets/js',
+    to: 'js/[path][name].[ext]',
+    pattern: /\.(js)$/
+  })
+
   /*
    * ENTRY CONFIG
    *
