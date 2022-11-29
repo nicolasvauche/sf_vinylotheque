@@ -6,11 +6,17 @@
 
 {% block body %}
     <section class="edit">
-        <h1>Modifie un album</h1>
+        <h1>
+            <a href="{{ app.request.headers.get('referer') }}">&laquo;</a>&nbsp;
+            Modifie un album
+        </h1>
 
         <img src="{{ asset('img/album/' ~ album.cover) }}" alt="{{ album.title }}" />
 
         {{ form_start(form, {'attr': {'class': 'app-form'}}) }}
+        <div class="form-group">
+            <p>{{ album.artist.name }}</p>
+        </div>
         <div class="form-group">
             {{ form_widget(form.title) }}
         </div>

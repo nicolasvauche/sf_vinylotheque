@@ -37,6 +37,7 @@ class UserController extends AbstractController
 
         return $this->renderForm('user/profile.html.twig', [
             'form' => $form,
+            'userAlbums' => $this->getUser()->getUserAlbums(),
         ]);
     }
 }

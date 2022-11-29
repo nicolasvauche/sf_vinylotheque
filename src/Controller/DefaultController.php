@@ -33,6 +33,7 @@ class DefaultController extends AbstractController
 
             return $this->render('default/index.html.twig', [
                 'album' => $album,
+                'userAlbums' => $this->getUser()->getUserAlbums(),
             ]);
         } else {
             return $this->redirectToRoute('app_album_search');
@@ -66,6 +67,7 @@ class DefaultController extends AbstractController
                 'favorite' => $userAlbum->isFavorite(),
             ],
             'id' => $id,
+            'userAlbums' => $this->getUser()->getUserAlbums(),
         ]);
     }
 

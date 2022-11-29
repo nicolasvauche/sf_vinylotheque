@@ -26,3 +26,13 @@ h2 {
 .text-danger {
     color: $color-red !important;
 }
+
+.bg-red {
+    color: $color-white !important;
+    background-color: $color-red !important;
+}
+
+.bg-grey {
+    color: $color-white !important;
+    background-color: rgba($color-black, 0.5) !important;
+}
