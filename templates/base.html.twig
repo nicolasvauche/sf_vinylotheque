@@ -50,10 +50,10 @@
                 {% endif %}
 
                 <a href="#" class="app-push bg-primary">
-                    {% if true %}
-                        <i class="fa-solid fa-face-smile"></i>
+                    {% if app.user.currentMood %}
+                        <i class="fa-solid fa-{{ app.user.currentMood }}"></i>
                     {% else %}
-                        <i class="fa-solid fa-face-angry"></i>
+                        <i class="fa-solid fa-face-meh-blank"></i>
                     {% endif %}
                 </a>
 

@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Album;
 use App\Repository\AlbumRepository;
 use App\Repository\UserAlbumRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -91,10 +92,17 @@ class DefaultController extends AbstractController
     }
 
     #[Route('/albums', name: 'app_home_albums')]
-    public function albums(UserAlbumRepository $userAlbumRepository)
+    public function albums()
     {
+        $collection = $this->getUser()->getUserAlbums();
+        $iterator = $collection->getIterator();
+        $iterator->uasort(function ($a, $b) {
+            return ($a->getAlbum()->getYear() < $b->getAlbum()->getYear()) ? -1 : 1;
+        });
+        $userAlbums = new ArrayCollection(iterator_to_array($iterator));
+
         return $this->render('default/albums.html.twig', [
-            'userAlbums' => $this->getUser()->getUserAlbums(),
+            'userAlbums' => $userAlbums,
         ]);
     }
 }

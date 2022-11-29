@@ -31,21 +31,24 @@ class UserFixtures extends Fixture implements OrderedFixtureInterface
         $user->setPseudo('Nicolas')
             ->setEmail('nicolas@user.com')
             ->setPassword($this->hasher->hashPassword($user, 'nicolas'))
-            ->setActive(true);
+            ->setActive(true)
+        ->setCurrentMood('face-angry');
         $manager->persist($user);
 
         $user = new User();
         $user->setPseudo('Sophie')
             ->setEmail('sophie@user.com')
             ->setPassword($this->hasher->hashPassword($user, 'sophie'))
-            ->setActive(true);
+            ->setActive(true)
+            ->setCurrentMood('face-grin-stars');
         $manager->persist($user);
 
         $user = new User();
         $user->setPseudo('Cédric')
             ->setEmail('cedric@user.com')
             ->setPassword($this->hasher->hashPassword($user, 'cedric'))
-            ->setActive(true);
+            ->setActive(true)
+            ->setCurrentMood('face-smile');
         $manager->persist($user);
 
         $manager->flush();
