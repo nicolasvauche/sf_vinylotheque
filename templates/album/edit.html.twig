@@ -7,7 +7,7 @@
 {% block body %}
     <section class="edit">
         <h1>
-            <a href="{{ app.request.headers.get('referer') }}">&laquo;</a>&nbsp;
+            <a href="{{ path('app_home') }}">&laquo;</a>&nbsp;
             Modifie un album
         </h1>
 
@@ -15,7 +15,7 @@
 
         {{ form_start(form, {'attr': {'class': 'app-form'}}) }}
         <div class="form-group">
-            <p>{{ album.artist.name }}</p>
+            {{ form_widget(form.artist.name) }}
         </div>
         <div class="form-group">
             {{ form_widget(form.title) }}

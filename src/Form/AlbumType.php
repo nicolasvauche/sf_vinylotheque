@@ -22,6 +22,7 @@ class AlbumType extends AbstractType
                     'class' => 'form-control',
                 ],
             ])
+            ->add('artist', ArtistType::class)
             ->add('year', TextType::class, [
                 'label' => 'Année',
                 'required' => false,
