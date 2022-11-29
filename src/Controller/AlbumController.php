@@ -5,17 +5,22 @@ namespace App\Controller;
 use App\Entity\Album;
 use App\Entity\Artist;
 use App\Entity\UserAlbum;
+use App\Form\AlbumType;
 use App\Form\DiscogsApiSearchType;
 use App\Repository\AlbumRepository;
 use App\Repository\ArtistRepository;
 use App\Repository\UserAlbumRepository;
 use App\Service\DiscogsApiService;
-use Gedmo\Sluggable\Sluggable;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\FormError;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
+use Symfony\Component\Validator\Constraints\File;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 #[Route('/album', name: 'app_album_')]
 class AlbumController extends AbstractController
@@ -101,5 +106,59 @@ class AlbumController extends AbstractController
         }
 
         return $this->redirectToRoute('app_album_search');
+    }
+
+    #[Route('/modifier/{id}', name: 'edit')]
+    public function edit(Request $request, Album $album, AlbumRepository $albumRepository, ValidatorInterface $validator): Response
+    {
+        $form = $this->createForm(AlbumType::class, $album);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            /** @var UploadedFile $coverFile */
+            $coverFile = $form->get('cover')->getData();
+
+            if ($coverFile) {
+                $safeFilename = $album->getSlug();
+                $newFilename = $safeFilename . '-' . uniqid() . '.' . $coverFile->guessExtension();
+
+                try {
+                    $coverFile->move(
+                        $this->getParameter('album_cover_directory'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    dd($e);
+                }
+
+                $album->setCover($newFilename);
+            }
+
+            $albumRepository->save($album, true);
+
+            $this->addFlash('success', "L'album {$album->getTitle()} a été modifié");
+        } else if ($form->isSubmitted() && !$form->isValid()) {
+            $coverFile = $form->get('cover')->getData();
+
+            if ($coverFile) {
+                $violations = $validator->validate(
+                    $coverFile,
+                    new File([
+                        'maxSize' => '1024k',
+                        'mimeTypes' => [
+                            'image/jpeg',
+                            'image/png',
+                            'image/webp',
+                        ],
+                        'mimeTypesMessage' => 'Choisis une image valide stp',
+                    ])
+                );
+            }
+        }
+
+        return $this->renderForm('album/edit.html.twig', [
+            'form' => $form,
+            'album' => $album,
+        ]);
     }
 }

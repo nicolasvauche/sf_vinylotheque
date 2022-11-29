@@ -5,6 +5,7 @@
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
     locale: 'fr'
+    album_cover_directory: '%kernel.project_dir%/public/img/album'
 
 services:
     # default configuration for services in *this* file

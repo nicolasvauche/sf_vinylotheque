@@ -21,7 +21,7 @@ class UserFixtures extends Fixture implements OrderedFixtureInterface
     {
         $admin = new User();
         $admin->setPseudo('Admin')
-            ->setEmail('hello@nicolasvauche.net')
+            ->setEmail('admin@admin.com')
             ->setPassword($this->hasher->hashPassword($admin, 'admin'))
             ->setRoles(['ROLE_ADMIN'])
             ->setActive(true);
@@ -29,8 +29,22 @@ class UserFixtures extends Fixture implements OrderedFixtureInterface
 
         $user = new User();
         $user->setPseudo('Nicolas')
-            ->setEmail('nvauche@gmail.com')
+            ->setEmail('nicolas@user.com')
             ->setPassword($this->hasher->hashPassword($user, 'nicolas'))
+            ->setActive(true);
+        $manager->persist($user);
+
+        $user = new User();
+        $user->setPseudo('Sophie')
+            ->setEmail('sophie@user.com')
+            ->setPassword($this->hasher->hashPassword($user, 'sophie'))
+            ->setActive(true);
+        $manager->persist($user);
+
+        $user = new User();
+        $user->setPseudo('Cédric')
+            ->setEmail('cedric@user.com')
+            ->setPassword($this->hasher->hashPassword($user, 'cedric'))
             ->setActive(true);
         $manager->persist($user);
 

@@ -50,5 +50,12 @@
             border-color: $color-green;
             background-color: $color-green;
         }
+
+        .error, & > ul > li {
+            margin-top: 0.25rem;
+            font-size: 0.85rem;
+            font-weight: bold;
+            color: $color-red;
+        }
     }
 }

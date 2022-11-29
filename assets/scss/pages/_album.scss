@@ -218,6 +218,20 @@ html {
                             }
                         }
                     }
+
+                    &.edit {
+                        padding: 1.5rem 0;
+                        height: calc(100vh - 9rem);
+                        background-color: rgba($color-black, 0.15);
+
+                        & > img {
+                            display: block;
+                            margin: 1rem 0 0;
+                            height: calc(100vh - 28rem);
+                            width: 100%;
+                            object-fit: contain;
+                        }
+                    }
                 }
             }
         }

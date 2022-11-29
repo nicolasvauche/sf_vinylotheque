@@ -23,6 +23,8 @@ class DefaultController extends AbstractController
                 'title' => $userAlbum->getAlbum()->getTitle(),
                 'artist' => $userAlbum->getAlbum()->getArtist()->getName(),
                 'cover' => $userAlbum->getAlbum()->getCover(),
+                'year' => $userAlbum->getAlbum()->getYear(),
+                'favorite' => $userAlbum->isFavorite(),
             ];
         }
 
@@ -31,7 +33,6 @@ class DefaultController extends AbstractController
 
             return $this->render('default/index.html.twig', [
                 'album' => $album,
-                'userAlbum' => $userAlbumRepository->findOneBy(['user' => $this->getUser(), 'album' => $album]),
             ]);
         } else {
             return $this->redirectToRoute('app_album_search');
@@ -61,6 +62,8 @@ class DefaultController extends AbstractController
                 'title' => $album->getTitle(),
                 'artist' => $album->getArtist()->getName(),
                 'cover' => $album->getCover(),
+                'year' => $album->getYear(),
+                'favorite' => $userAlbum->isFavorite(),
             ],
             'id' => $id,
         ]);
