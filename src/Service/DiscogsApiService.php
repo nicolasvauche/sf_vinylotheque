@@ -62,7 +62,7 @@ class DiscogsApiService
                 ],
                 'title' => $results['title'],
                 'year' => $results['year'],
-                'cover' => $results['images'][0]['resource_url'],
+                'cover' => $results['images'][0]['resource_url'] ?? null,
             ];
         }
 

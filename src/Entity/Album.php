@@ -29,7 +29,7 @@ class Album
     #[ORM\Column(length: 5)]
     private ?string $year = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $cover = null;
 
     #[ORM\ManyToOne(inversedBy: 'albums')]
@@ -102,7 +102,7 @@ class Album
         return $this->cover;
     }
 
-    public function setCover(string $cover): self
+    public function setCover(?string $cover): self
     {
         $this->cover = $cover;
 

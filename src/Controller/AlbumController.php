@@ -73,13 +73,13 @@ class AlbumController extends AbstractController
 
             $album = $albumRepository->findOneBy(['discogsId' => $result['discogsId']]);
             if (!$album) {
-                // Make slug for image
-                $info = getimagesize($result['cover']);
-                $extension = image_type_to_extension($info[2]);
-                $filename = $slugger->slug(strtolower($artist->getName()) . '-' . strtolower($result['title'])) . $extension;
-
-                // Save image file
                 if ($result['cover']) {
+                    // Make slug for image
+                    $info = getimagesize($result['cover']);
+                    $extension = image_type_to_extension($info[2]);
+                    $filename = $slugger->slug(strtolower($artist->getName()) . '-' . strtolower($result['title'])) . $extension;
+
+                    // Save image file
                     $content = file_get_contents($result['cover']);
                     $fp = fopen($this->getParameter('kernel.project_dir') . "/public/img/album/$filename", "w");
                     fwrite($fp, $content);
@@ -90,7 +90,7 @@ class AlbumController extends AbstractController
                 $album->setDiscogsId($result['discogsId'])
                     ->setTitle($result['title'])
                     ->setYear($result['year'])
-                    ->setCover($filename)
+                    ->setCover($filename ?? null)
                     ->setArtist($artist);
                 $albumRepository->save($album, true);
 
