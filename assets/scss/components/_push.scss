@@ -47,7 +47,32 @@
     }
 
     i {
+        z-index: 9999;
         font-size: 1.35rem;
+    }
+
+    .moods {
+        display: none;
+        position: absolute;
+        top: 0;
+        z-index: 9998;
+        padding-top: 2.25rem;
+        background-color: $color-primary;
+        border: 2px solid $color-black;
+        border-top: none;
+        border-radius: 2rem;
+
+        i {
+            z-index: 9999;
+            margin: 0.5rem 0;
+        }
+    }
+
+    &:focus,
+    &:active {
+        .moods {
+            display: block;
+        }
     }
 }
 

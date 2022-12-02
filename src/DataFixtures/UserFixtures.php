@@ -32,7 +32,7 @@ class UserFixtures extends Fixture implements OrderedFixtureInterface
             ->setEmail('nicolas@user.com')
             ->setPassword($this->hasher->hashPassword($user, 'nicolas'))
             ->setActive(true)
-        ->setCurrentMood('face-angry');
+        ->setCurrentMood('fa-face-angry');
         $manager->persist($user);
 
         $user = new User();
@@ -40,7 +40,7 @@ class UserFixtures extends Fixture implements OrderedFixtureInterface
             ->setEmail('sophie@user.com')
             ->setPassword($this->hasher->hashPassword($user, 'sophie'))
             ->setActive(true)
-            ->setCurrentMood('face-grin-stars');
+            ->setCurrentMood('fa-face-grin-stars');
         $manager->persist($user);
 
         $user = new User();
@@ -48,7 +48,7 @@ class UserFixtures extends Fixture implements OrderedFixtureInterface
             ->setEmail('cedric@user.com')
             ->setPassword($this->hasher->hashPassword($user, 'cedric'))
             ->setActive(true)
-            ->setCurrentMood('face-smile');
+            ->setCurrentMood('fa-face-smile');
         $manager->persist($user);
 
         $manager->flush();

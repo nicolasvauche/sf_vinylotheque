@@ -44,17 +44,17 @@
             <div class="pushes">
                 {% if userAlbums is defined %}
                     <a href="{{ path('app_home_albums') }}" class="app-push">
-                        <i class="fa-solid fa-record-vinyl"></i>
                         <span>{{ userAlbums | length }}</span>
                     </a>
                 {% endif %}
 
-                <a href="#" class="app-push bg-primary">
+                <a href="#" class="app-push mood bg-primary">
                     {% if app.user.currentMood %}
-                        <i class="fa-solid fa-{{ app.user.currentMood }}"></i>
+                        <i class="fa-solid {{ app.user.currentMood }}"></i>
                     {% else %}
                         <i class="fa-solid fa-face-meh-blank"></i>
                     {% endif %}
+                    <div class="moods"></div>
                 </a>
 
                 <a href="#" class="app-push bg-grey">

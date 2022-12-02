@@ -16,7 +16,7 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   const handleTouchMove = (evt) => {
-    if (!xDown || !yDown) {
+    if (!xDown || !yDown || !resultsElt) {
       return
     }
 

@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Album;
 use App\Repository\AlbumRepository;
 use App\Repository\UserAlbumRepository;
+use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -104,5 +105,15 @@ class DefaultController extends AbstractController
         return $this->render('default/albums.html.twig', [
             'userAlbums' => $userAlbums,
         ]);
+    }
+
+    #[Route('/mood/{mood}', name: 'app_home_mood')]
+    public function mood(UserRepository $userRepository, $mood)
+    {
+        $user = $userRepository->find($this->getUser()->getId());
+        $user->setCurrentMood($mood !== 'fa-face-meh-blank' ? $mood : null);
+        $userRepository->save($user, true);
+
+        return $this->redirectToRoute('app_home');
     }
 }
