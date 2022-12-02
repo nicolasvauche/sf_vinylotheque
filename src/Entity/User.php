@@ -43,6 +43,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: UserAlbum::class)]
     private Collection $userAlbums;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $currentMood = null;
+
     public function __construct()
     {
         $this->userAlbums = new ArrayCollection();
@@ -181,6 +184,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $userAlbum->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCurrentMood(): ?string
+    {
+        return $this->currentMood;
+    }
+
+    public function setCurrentMood(?string $currentMood): self
+    {
+        $this->currentMood = $currentMood;
 
         return $this;
     }

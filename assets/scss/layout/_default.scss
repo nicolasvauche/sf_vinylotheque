@@ -5,5 +5,15 @@ html {
         text-align: center;
         color: $color-black;
         background-color: $color-white;
+
+        &.scrollable {
+            overflow: initial;
+
+            main {
+                section {
+                    padding-bottom: 6rem !important;
+                }
+            }
+        }
     }
 }

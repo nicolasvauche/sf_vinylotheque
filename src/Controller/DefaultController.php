@@ -5,6 +5,8 @@ namespace App\Controller;
 use App\Entity\Album;
 use App\Repository\AlbumRepository;
 use App\Repository\UserAlbumRepository;
+use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -88,5 +90,30 @@ class DefaultController extends AbstractController
                 return $this->json('like');
             }
         }
+    }
+
+    #[Route('/albums', name: 'app_home_albums')]
+    public function albums()
+    {
+        $collection = $this->getUser()->getUserAlbums();
+        $iterator = $collection->getIterator();
+        $iterator->uasort(function ($a, $b) {
+            return ($a->getAlbum()->getYear() < $b->getAlbum()->getYear()) ? -1 : 1;
+        });
+        $userAlbums = new ArrayCollection(iterator_to_array($iterator));
+
+        return $this->render('default/albums.html.twig', [
+            'userAlbums' => $userAlbums,
+        ]);
+    }
+
+    #[Route('/mood/{mood}', name: 'app_home_mood')]
+    public function mood(UserRepository $userRepository, $mood)
+    {
+        $user = $userRepository->find($this->getUser()->getId());
+        $user->setCurrentMood($mood !== 'fa-face-meh-blank' ? $mood : null);
+        $userRepository->save($user, true);
+
+        return $this->redirectToRoute('app_home');
     }
 }

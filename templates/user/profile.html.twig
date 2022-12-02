@@ -2,6 +2,11 @@
 
 {% block title %}Mon profil{% endblock %}
 
+
+{% block javascripts %}
+    <script src="{{ asset('build/js/moods.js') }}" defer></script>
+{% endblock %}
+
 {% block body %}
     <section class="profile">
         <h1>Mon profil</h1>
