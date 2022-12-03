@@ -2,7 +2,8 @@ window.addEventListener('DOMContentLoaded', () => {
   const moods = [
     'fa-face-smile',
     'fa-face-grin-stars',
-    'fa-face-kiss-wink-heart',
+    'fa-face-grin-hearts',
+    'fa-face-flushed',
     'fa-face-sad-tear',
     'fa-face-angry',
     'fa-face-meh-blank'
