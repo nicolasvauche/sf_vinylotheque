@@ -51,27 +51,33 @@
         font-size: 1.35rem;
     }
 
-    .moods {
-        display: none;
-        position: absolute;
-        top: 0;
-        z-index: 9998;
-        padding-top: 2.25rem;
-        background-color: $color-primary;
-        border: 2px solid $color-black;
-        border-top: none;
-        border-radius: 2rem;
-
-        i {
-            z-index: 9999;
-            margin: 0.5rem 0;
-        }
-    }
-
-    &:focus,
-    &:active {
+    &.mood {
         .moods {
-            display: block;
+            display: none;
+            position: absolute;
+            top: 0;
+            z-index: 9998;
+            padding-top: 2.25rem;
+            background-color: $color-primary;
+            border: 2px solid $color-black;
+            border-top: none;
+            border-radius: 2rem;
+
+            i {
+                z-index: 9999;
+                margin: 0.75rem 0;
+
+                &:hover {
+                    color: $color-white;
+                }
+            }
+        }
+
+        &:focus,
+        &:active {
+            .moods {
+                display: block;
+            }
         }
     }
 }

@@ -1,7 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}
-    Tous tes albums
+{% block title %}Tous tes albums{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('build/js/albums.js') }}" defer></script>
 {% endblock %}
 
 {% block body_class %}album scrollable{% endblock %}
@@ -18,12 +20,21 @@
                 <div class="grid-item">
                     <a href="{{ path('app_album_edit', {'id': userAlbum.album.id}) }}">
                         <img src="{{ asset('img/album/' ~ userAlbum.album.cover) }}" alt="{{ userAlbum.album.title }}" class="item-img" />
+                    </a>
+                    <a href="{{ path('app_album_edit', {'id': userAlbum.album.id}) }}">
                         <h2 class="item-title">{{ userAlbum.album.title }}</h2>
                         <h3>
                             {{ userAlbum.album.artist.name }}
-                            <small>{{ userAlbum.album.year }}</small>
                         </h3>
                     </a>
+                    <p>
+                        <a href="{{ path('app_album_edit', {'id': userAlbum.album.id}) }}">
+                            {{ userAlbum.album.year }}
+                        </a>
+                        <a href="#" class="like" data-albumid="{{ userAlbum.album.id }}">
+                            <i class="fa-{% if userAlbum.isFavorite %}solid{% else %}regular{% endif %} fa-heart"></i>
+                        </a>
+                    </p>
                 </div>
             {% endfor %}
         </div>

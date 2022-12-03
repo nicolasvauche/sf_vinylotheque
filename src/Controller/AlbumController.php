@@ -12,7 +12,6 @@ use App\Repository\ArtistRepository;
 use App\Repository\UserAlbumRepository;
 use App\Service\DiscogsApiService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
